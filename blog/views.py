@@ -4,6 +4,10 @@ from .models import Post
 # from django.http import HttpResponse
 # Create your views here.
 
+
+"""
+Using Function: post_view(), is bad pratice an difficult to scale
+"""
 # def post_view(request):
 #     if request.method == "GET":
 #         return HttpResponse("This is the GET blog page")
@@ -12,5 +16,5 @@ from .models import Post
 
 class PostList(generic.ListView):
     # model = Post
-    queryset = Post.objects.all()
+    queryset = Post.objects.filter(status=1)
     template_name = "post_list.html"
