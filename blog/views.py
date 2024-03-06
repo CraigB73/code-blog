@@ -17,4 +17,5 @@ Using Function: post_view(), is bad pratice an difficult to scale
 class PostList(generic.ListView):
     # model = Post
     queryset = Post.objects.filter(status=1)
-    template_name = "post_list.html"
+    template_name = "blog/index.html"
+    paginate_by = 6
