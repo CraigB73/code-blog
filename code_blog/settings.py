@@ -20,8 +20,7 @@ if os.path.isfile('env.py'):
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Create a path to access multiple templates directories in the projects
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-# Creates a path to the static directory which hold all static files ie styles.css
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,7 +30,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 SECRET_KEY = 'django-insecure-5mw6iv)&g%srwx&b-@62##8-n1_qvc)x!y0&^35vj2nag(4&8l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*",
                  ".herokuapp.com",]
@@ -51,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -129,6 +129,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# Creates a path to the static directory which hold all static files ie styles.css
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+# Create a staticfiles directory and collect the static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
