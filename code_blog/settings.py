@@ -32,8 +32,8 @@ SECRET_KEY = 'django-insecure-5mw6iv)&g%srwx&b-@62##8-n1_qvc)x!y0&^35vj2nag(4&8l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*",
-                 ".herokuapp.com",]
+ALLOWED_HOSTS = ["127.0.0.1",
+    ".herokuapp.com",]
 
 
 # Application definition
@@ -45,8 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',   
+    'blog',
     'django_summernote',
-    'blog'
+    'about',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +63,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware', #  Add from allauth
 ]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 ROOT_URLCONF = 'code_blog.urls'
 
@@ -112,6 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -141,5 +152,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.herokuapp.com",
-    "http://127.0.0.1:8000"
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1"
 ]
